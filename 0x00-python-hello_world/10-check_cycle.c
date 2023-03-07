@@ -8,16 +8,15 @@
  */
 int check_cycle(listint_t *list)
 {
-	listint_t *cursor = NULL;
+	listint_t *cursor = list, *fcursor = list;
 
-	if (list == NULL)
-		return (0);
-
-	cursor = list->next;
-	while (cursor != list && cursor != NULL)
+	while (cursor && fcursor && fcursor->next)
+	{
 		cursor = cursor->next;
+		fcursor = fcursor->next->next;
+		if (cursor == fcursor)
+			return (1);
+	}
 
-	if (cursor == list)
-		return (1);
 	return (0);
 }
