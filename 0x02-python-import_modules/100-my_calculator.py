@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 from calculator_1 import add, sub, mul, div
-from sys import argv, exit, stderr
+from sys import argv, exit
 
 
 def main():
     if len(argv) != 4:
-        stderr.write("Usage: ./100-my_calculator.py <a> <operator> <b>\n")
+        print("Usage: ./100-my_calculator.py <a> <operator> <b>")
         exit(1)
 
     a = int(argv[1])
@@ -15,7 +15,7 @@ def main():
     operation = [add, sub, mul, div]
 
     if operator not in operators:
-        stderr.write("Unknown operator. Available operators: +, -, * and /\n")
+        print("Unknown operator. Available operators: +, -, * and /")
         exit(1)
 
     for i in range(4):
