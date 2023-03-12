@@ -22,8 +22,6 @@ size_t print_listint(const listint_t *);
 listint_t *add_nodeint(listint_t **, const int);
 listint_t *add_nodeint_end(listint_t **, const int);
 void free_listint(listint_t *);
-int check_cycle(listint_t *);
-listint_t *insert_node(listint_t **, int);
 int is_palindrome(listint_t **);
 listint_t *reverse_list(listint_t *);
 
