@@ -4,87 +4,46 @@
  * is_palindrome - checks if a singly linked list is a palindrome
  * @head: head of list
  *
- * Return: 1 if it is palindrome, 0 otherwise
+ * Return: 0 if it is not a palindrome, 1 otherwise
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *reversed = NULL, *cursor = *head, *rcursor = NULL;
-	int flag = 1;
+	listint_t *front, *back;
+	int len, i, j;
 
 	if (*head == NULL)
 		return (1);
 
-	reversed = reverse_list(*head);
-	rcursor = reversed;
+	len = get_len(*head);
+
+	for (i = 0, front = *head; front; i++, front = front->next)
+	{
+		for (j = 0, back = *head; j < len - i - 1; j++)
+			back = back->next;
+
+		if (front->n != back->n)
+			return (0);
+	}
+
+	return (1);
+}
+
+/**
+ * get_len - counts length of a list
+ * @head: head of list
+ *
+ * Return: len
+ */
+int get_len(listint_t *head)
+{
+	int len = 0;
+	listint_t *cursor = head;
 
 	while (cursor)
 	{
-		if (cursor->n != rcursor->n)
-		{
-			flag = 0;
-			break;
-		}
-
-		cursor = cursor->next;
-		rcursor = rcursor->next;
-	}
-
-	free_listint(reversed);
-	return (flag);
-}
-
-/**
- * reverse_list - reverses a linked list
- * @head: head of list
- *
- * Return: new head of list
- */
-listint_t *reverse_list(listint_t *head)
-{
-	listint_t *nhead = NULL, *cursor = head;
-
-	while (cursor)
-	{
-		add_nodeint(&nhead, cursor->n);
+		len++;
 		cursor = cursor->next;
 	}
 
-	return (nhead);
-}
-
-/**
- * add_nodeint - inserts a node at the beginning of a list
- * @head: head of list
- * @n: number to insert in node
- *
- * Return: new node (on success)
- */
-listint_t *add_nodeint(listint_t **head, const int n)
-{
-	listint_t *node;
-
-	node = malloc(sizeof(listint_t));
-	if (node == NULL)
-		return (NULL);
-
-	node->n = n;
-	node->next = *head;
-	*head = node;
-
-	return (node);
-}
-
-/**
- * free_listint - frees a linked list
- * @head: head of list
- *
- * Return: nothing
- */
-void free_listint(listint_t *head)
-{
-	if (head == NULL)
-		return;
-
-	free_listint(head->next);
-	free(head);
+	return (len);
 }
