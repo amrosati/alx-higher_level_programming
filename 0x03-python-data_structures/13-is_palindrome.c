@@ -4,46 +4,90 @@
  * is_palindrome - checks if a singly linked list is a palindrome
  * @head: head of list
  *
- * Return: 0 if it is not a palindrome, 1 otherwise
+ * Return: 1 if it is palindrome, 0 otherwise
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *front, *back;
-	int len, i, j;
+	listint_t *reversed = NULL, *front = *head, *back = NULL;
+	int flag = 1;
 
 	if (*head == NULL)
 		return (1);
 
-	len = get_len(*head);
+	reversed = reverse_list(*head);
 
-	for (i = 0, front = *head; front; i++, front = front->next)
+	while (front)
 	{
-		for (j = 0, back = *head; j < len - i - 1; j++)
-			back = back->next;
-
+		back = pop(&reversed);
 		if (front->n != back->n)
-			return (0);
+		{
+			flag = 0;
+			break;
+		}
+
+		front = front->next;
+		free(back);
 	}
 
-	return (1);
+	return (flag);
 }
 
 /**
- * get_len - counts length of a list
+ * reverse_list - reverses a linked list
  * @head: head of list
  *
- * Return: len
+ * Return: new head of list
  */
-int get_len(listint_t *head)
+listint_t *reverse_list(listint_t *head)
 {
-	int len = 0;
-	listint_t *cursor = head;
+	listint_t *reversed = NULL, *cursor = head;
 
 	while (cursor)
 	{
-		len++;
+		push(&reversed, cursor->n);
 		cursor = cursor->next;
 	}
 
-	return (len);
+	return (reversed);
+}
+
+/**
+ * push - inserts a node at the beginning of a list
+ * @head: head of list
+ * @n: number to insert in node
+ *
+ * Return: new node (on success)
+ */
+listint_t *push(listint_t **head, const int n)
+{
+	listint_t *node;
+
+	node = malloc(sizeof(listint_t));
+	if (node == NULL)
+		return (NULL);
+
+	node->n = n;
+	node->next = *head;
+	*head = node;
+
+	return (node);
+}
+
+/**
+ * pop - pops a node from linked list
+ * @head: head of list
+ *
+ * Return: node
+ */
+listint_t *pop(listint_t **head)
+{
+	listint_t *node;
+
+	if (*head == NULL)
+		return (NULL);
+
+	node = *head;
+	*head = node->next;
+
+	return (node);
 }

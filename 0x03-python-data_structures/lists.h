@@ -24,6 +24,7 @@ listint_t *add_nodeint_end(listint_t **, const int);
 void free_listint(listint_t *);
 int is_palindrome(listint_t **);
 listint_t *reverse_list(listint_t *);
-int get_len(listint_t *);
+listint_t *push(listint_t **, const int);
+listint_t *pop(listint_t **);
 
 #endif /* LISTS_H */
