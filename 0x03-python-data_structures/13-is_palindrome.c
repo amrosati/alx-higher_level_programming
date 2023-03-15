@@ -8,86 +8,88 @@
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *reversed = NULL, *front = *head, *back = NULL;
+	listint_t *slow_ptr = *head, *fast_ptr = *head;
+	listint_t *second_half, *prev_slow = *head;
+	listint_t *midnode = NULL;
 	int flag = 1;
 
 	if (*head == NULL)
-		return (1);
+		return (flag);
 
-	reversed = reverse_list(*head);
-
-	while (front)
+	while (fast_ptr && fast_ptr->next)
 	{
-		back = pop(&reversed);
-		if (front->n != back->n)
-		{
-			flag = 0;
-			break;
-		}
+		fast_ptr = fast_ptr->next->next;
 
-		front = front->next;
-		free(back);
+		prev_slow = slow_ptr;
+		slow_ptr = slow_ptr->next;
 	}
+
+	if (fast_ptr != NULL)
+	{
+		midnode = slow_ptr;
+		slow_ptr = slow_ptr->next;
+	}
+
+	second_half = slow_ptr;
+	prev_slow->next = NULL;
+	reverse(&second_half);
+
+	flag = compare(*head, second_half);
+
+	reverse(&second_half);
+
+	if (midnode != NULL)
+	{
+		prev_slow->next = midnode;
+		midnode->next = second_half;
+	}
+	else
+		prev_slow->next = second_half;
 
 	return (flag);
 }
 
 /**
- * reverse_list - reverses a linked list
+ * reverse - reverses a linked list
  * @head: head of list
  *
  * Return: new head of list
  */
-listint_t *reverse_list(listint_t *head)
+listint_t *reverse(listint_t **head)
 {
-	listint_t *reversed = NULL, *cursor = head;
+	listint_t *prev = NULL, *cursor = *head, *next;
 
 	while (cursor)
 	{
-		push(&reversed, cursor->n);
-		cursor = cursor->next;
+		next = cursor->next;
+		cursor->next = prev;
+		prev = cursor;
+		cursor = next;
 	}
 
-	return (reversed);
+	*head = prev;
+	return (*head);
 }
 
 /**
- * push - inserts a node at the beginning of a list
- * @head: head of list
- * @n: number to insert in node
+ * compare - compares equality between two singly linked lists
+ * @head1: list 1
+ * @head2: list 2
  *
- * Return: new node (on success)
+ * Return: 1 if they are equal
  */
-listint_t *push(listint_t **head, const int n)
+int compare(listint_t *head1, listint_t *head2)
 {
-	listint_t *node;
+	listint_t *cursor1 = head1, *cursor2 = head2;
 
-	node = malloc(sizeof(listint_t));
-	if (node == NULL)
-		return (NULL);
+	while (cursor1 && cursor2)
+	{
+		if (cursor1->n != cursor2->n)
+			return (0);
 
-	node->n = n;
-	node->next = *head;
-	*head = node;
+		cursor1 = cursor1->next;
+		cursor2 = cursor2->next;
+	}
 
-	return (node);
-}
-
-/**
- * pop - pops a node from linked list
- * @head: head of list
- *
- * Return: node
- */
-listint_t *pop(listint_t **head)
-{
-	listint_t *node;
-
-	if (*head == NULL)
-		return (NULL);
-
-	node = *head;
-	*head = node->next;
-
-	return (node);
+	return (1);
 }
