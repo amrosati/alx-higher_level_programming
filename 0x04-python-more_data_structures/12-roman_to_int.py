@@ -12,7 +12,7 @@ def roman_to_int(roman_string):
         if roman_string[i] not in romans:
             res = 0
             break
-        elif i + 2 <= len(roman_string) and roman_string[i:i+1] in romans:
+        elif i + 2 <= len(roman_string) and roman_string[i:i+2] in romans:
             res += romans[roman_string[i:i+2]]
             i += 1
         else:
