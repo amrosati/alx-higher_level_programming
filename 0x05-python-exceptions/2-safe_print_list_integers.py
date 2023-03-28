@@ -1,17 +1,12 @@
 #!/usr/bin/python3
 def safe_print_list_integers(my_list=[], x=0):
     n = 0
-    for el in my_list:
-        if (n == x):
-            break
+    for i in range(x):
         try:
-            n += 1
             print("{:d}".format(el), end="")
+            n += 1
         except (ValueError, TypeError):
             n -= 1
             continue
     print()
-    try:
-        return n
-    except UnboundLocalError:
-        return 0
+    return n
