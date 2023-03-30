@@ -1,6 +1,10 @@
 #!/usr/bin/python3
+"""Square class module
+
+Defines an empty class Square that does nothing
+"""
 class Square:
-    """Square Class that does nothing
+    """Empty class
 
     No properties and attribures
 
