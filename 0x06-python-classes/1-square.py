@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-"""Module 1-square
+"""Square class module
 
-Contains ''Square'' class
+Defines a square with a size
 """
 
 
