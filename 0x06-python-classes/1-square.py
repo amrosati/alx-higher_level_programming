@@ -4,13 +4,8 @@
 
 
 class Square:
-    """Square
+    """Represents a square"""
 
-    defines a square with size
-
-    Attributes:
-        size: private attribute represents a square's size
-    """
     __init__(self, size):
         """Initialize a new Square
 
