@@ -3,6 +3,8 @@
 
 Defines an empty class Square that does nothing
 """
+
+
 class Square:
     """Empty class
 
