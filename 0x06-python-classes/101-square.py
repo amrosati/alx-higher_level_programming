@@ -79,7 +79,7 @@ class Square:
             [print("#", end="") for k in range(self.__size)]
             print()
 
-    def __str__:
+    def __str__(self):
         """string representation of square instance"""
         if self.__size != 0:
             [print() for i in range(self.__position[1])]
