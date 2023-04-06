@@ -31,7 +31,7 @@ It can accept one value for a and the default value of b is ``98``.
 	>>> add_integer(1)
 	99
 
-Non-Numbers
+Wrong Types
 ===========
 
 It should raise a ``TypeError`` when ever used on non-numerical values.
@@ -57,3 +57,27 @@ It should raise a ``TypeError`` when ever used on non-numerical values.
 	Traceback (most recent call last):
 		...
 	TypeError: b must be an integer
+
+Infinity
+========
+
+The function will fail when givin infinity.
+
+::
+
+	>>> add_integer(float('inf'))
+	Traceback (most recent call last):
+		...
+	OverflowError: cannot convert float infinity to integer
+
+``NaN`` value
+=============
+
+It should raise a ``ValueError`` when givin ``nan``.
+
+::
+
+	>>> add_integer(45, float('nan'))
+	Traceback (most recent call last):
+		...
+	ValueError: cannot convert float NaN to integer
