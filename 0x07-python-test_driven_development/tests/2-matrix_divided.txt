@@ -128,3 +128,13 @@ If ``matrix`` is ``None`` raises a ``TypeError``
 	Traceback (most recent call last):
 		...
 	TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+By Infinity
+===========
+
+All values (if any) should be ``0.0`` when dividing by ``float('inf')``.
+
+::
+
+	>>> print(matrix_divided(matrix, float('inf')))
+	[[0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]
