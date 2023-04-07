@@ -26,9 +26,9 @@ Should print the text indented.
 	>>> text_indentation(text)
 	Hello, World?
 	<BLANKLINE>
-	 is just a test.
+	is just a test.
 	<BLANKLINE>
-	 or is it?
+	or is it?
 	<BLANKLINE>
 	I think we should test that:
 	<BLANKLINE>
