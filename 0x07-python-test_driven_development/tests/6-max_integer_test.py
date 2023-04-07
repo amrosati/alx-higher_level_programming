@@ -26,6 +26,10 @@ class TestMaxInteger(unittest.TestCase):
         """Test single element list"""
         self.assertEqual(max_integer([1]), 1)
 
+    def test_at_beginning(self):
+        """Test max at beginning"""
+        self.assertEqual(max_integer([4.2, 3, -9]), 4.2)
+
     def test_floats(self):
         """Test a list of floating point numbers"""
         floats = [1.1, -2.2, 3.3, 4.1, 4.2]
