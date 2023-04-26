@@ -101,3 +101,9 @@ class Rectangle:
             rec += '\n'
 
         return rec
+
+    def __repr__(self):
+        """return a representation of the rectangle
+        to be able to recreate a new instance
+        """
+        return "Rectangle({:d}, {:d})".format(self.__width, self.__height)
