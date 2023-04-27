@@ -14,7 +14,7 @@ Setup
 
 ::
 
-	>>> Rectangle = __import__('5-rectangle').Rectangle
+	>>> Rectangle = __import__('6-rectangle').Rectangle
 
 Create an object
 ================
@@ -61,8 +61,8 @@ Should print ``#``s shaping a rectangle.
 	###
 	###
 	###
-	>>> r = Rectangle(0, 4)
-	>>> print(r)
+	>>> new_rect = Rectangle(0, 4)
+	>>> print(new_rect)
 	<BLANKLINE>
 
 Testing ``repr()`` of the rectangle
@@ -72,12 +72,13 @@ Should return a representation of the rectangle to be recreated.
 
 ::
 
-	>>> new = eval(repr(rect))
-	>>> new is rect
+	>>> new_rect = eval(repr(rect))
+	Bye rectangle...
+	>>> new_rect is rect
 	False
-	>>> type(new) is type(rect)
+	>>> type(new_rect) is type(rect)
 	True
-	>>> new.area() == rect.area()
+	>>> new_rect.area() == rect.area()
 	True
 
 Exceptions
@@ -96,12 +97,14 @@ and raises ``ValueError()`` if the value are below 0.
 	Traceback (most recent call last):
 		...
 	ValueError: height must be >= 0
-	>>> nrect = Rectangle(1, 3)
-	>>> nrect.width = "h"
+	>>> new_rect = Rectangle(1, 3)
+	Bye rectangle...
+	Bye rectangle...
+	>>> new_rect.width = "h"
 	Traceback (most recent call last):
 		...
 	TypeError: width must be an integer
-	>>> nrect.height = 4.2
+	>>> new_rect.height = 4.2
 	Traceback (most recent call last):
 		...
 	TypeError: height must be an integer
@@ -115,9 +118,21 @@ Should print a message when deleting an object.
 
 	>>> del rect
 	Bye rectangle...
-	>>> del r
+	>>> del new_rect
 	Bye rectangle...
-	>>> nrect = Rectangle()
+
+Number of Instances
+===================
+
+Track the number of instances.
+
+::
+
+	>>> Rectangle.number_of_instances
+	0
+	>>> rect = Rectangle()
+	>>> Rectangle.number_of_instances == 1
+	True
+	>>> del rect
 	Bye rectangle...
-	>>> del nrect
-	Bye rectangle...
+	>>> Rectangle.number_of_instances == 0
