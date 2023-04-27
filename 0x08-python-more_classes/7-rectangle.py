@@ -102,7 +102,7 @@ class Rectangle:
         rec = ''
         for i in range(self.height):
             for j in range(self.width):
-                rec += str(print_symbol)
+                rec += str(self.print_symbol)
 
             if i == self.height - 1:
                 break
