@@ -14,7 +14,7 @@ Setup
 
 ::
 
-	>>> Rectangle = __import__('6-rectangle').Rectangle
+	>>> Rectangle = __import__('8-rectangle').Rectangle
 
 Create an object
 ================
@@ -128,11 +128,45 @@ Track the number of instances.
 
 ::
 
-	>>> Rectangle.number_of_instances
-	0
+	>>> Rectangle.number_of_instances = 0
 	>>> rect = Rectangle()
 	>>> Rectangle.number_of_instances == 1
 	True
 	>>> del rect
 	Bye rectangle...
 	>>> Rectangle.number_of_instances == 0
+	True
+
+Comparing two rectangles
+========================
+
+If the first is bigger or both are equal should return the first,
+otherwise returns the second rectangle.
+
+::
+
+	>>> rect_1 = Rectangle(4, 4)
+	>>> rect_2 = Rectangle(4, 4)
+	>>> Rectangle.bigger_or_equal(rect_1, rect_2) == rect_1
+	True
+	>>> rect_2.width = 10
+	>>> Rectangle.bigger_or_equal(rect_1, rect_2) == rect_2
+	True
+	>>> Rectangle.bigger_or_equal(rect_2, rect_1) == rect_2
+	True
+	>>> Rectangle.bigger_or_equal("rect_1", rect_2)
+	Traceback (most recent call last):
+		...
+	TypeError: rect_1 must be an instance of Rectangle
+	>>> Rectangle.bigger_or_equal(rect_1, 43)
+	Traceback (most recent call last):
+		...
+	TypeError: rect_2 must be an instance of Rectangle
+	>>> Rectangle.number_of_instances == 2
+	True
+	>>> del rect_1
+	Bye rectangle...
+	>>> del rect_2
+	Bye rectangle...
+	>>> Rectangle.number_of_instances
+	0
