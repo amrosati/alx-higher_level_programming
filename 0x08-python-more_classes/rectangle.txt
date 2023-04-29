@@ -14,7 +14,7 @@ Setup
 
 ::
 
-	>>> Rectangle = __import__('8-rectangle').Rectangle
+	>>> Rectangle = __import__('9-rectangle').Rectangle
 
 Create an object
 ================
@@ -170,3 +170,24 @@ otherwise returns the second rectangle.
 	Bye rectangle...
 	>>> Rectangle.number_of_instances
 	0
+
+Testing ``square()''
+====================
+
+Should create a square rectangle.
+
+::
+
+	>>> square = Rectangle.square(5)
+	>>> print("Area: {} - Perimeter: {}".format(square.area(), square.perimeter()))
+	Area: 25 - Perimeter: 20
+	>>> print(square)
+	#####
+	#####
+	#####
+	#####
+	#####
+	>>> Rectangle.number_of_instances
+	1
+	>>> del square
+	Bye rectangle...
