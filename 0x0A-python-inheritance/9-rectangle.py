@@ -40,4 +40,4 @@ class Rectangle(BaseGeometry):
         Returns:
             (:obj:`str`): String representation of rectangle
         """
-        return "{} {}/{}".format("Rectangle", self.__width, self.__height)
+        return "[{}] {}/{}".format("Rectangle", self.__width, self.__height)
