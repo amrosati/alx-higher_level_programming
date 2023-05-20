@@ -2,15 +2,22 @@
 
 """Defines Rectangle Class
 """
-from base import Base
+from models.base import Base
 
 
 class Rectangle(Base):
-    """Rectangle class inherits from Base
-    """
+    """Rectangle class inherits from Base"""
 
     def __init__(self, width, height, x=0, y=0, id=None):
-        """Constructor"""
+        """Constructor
+
+        Args:
+            width (int): width
+            height (int): height
+            x (int): x point
+            y (int): y point
+            id (int): instance id
+        """
         super().__init__(id)
         self.width = width
         self.height = height
