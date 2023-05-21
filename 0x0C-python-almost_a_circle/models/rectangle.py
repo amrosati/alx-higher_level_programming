@@ -2,11 +2,12 @@
 
 """Defines Rectangle Class
 """
-from base import Base
+from models.base import Base
 
 
 class Rectangle(Base):
-    """Rectangle class inherits from Base"""
+    """Rectangle class inherits from Base
+    """
 
     def __init__(self, width, height, x=0, y=0, id=None):
         """Constructor
@@ -19,6 +20,7 @@ class Rectangle(Base):
             id (int): instance id
         """
         super().__init__(id)
+
         self.width = width
         self.height = height
         self.x = x
@@ -26,40 +28,48 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        """width getter"""
+        """width getter
+        """
         return self.__width
 
     @width.setter
     def width(self, width):
-        """width setter"""
+        """width setter
+        """
         self.__width = width
 
     @property
     def height(self):
-        """height getter"""
+        """height getter
+        """
         return self.__height
 
     @height.setter
     def height(self, height):
-        """height setter"""
+        """height setter
+        """
         self.__height = height
 
-    @propery
+    @property
     def x(self):
-        """x getter"""
+        """x getter
+        """
         return self.__x
 
     @x.setter
     def x(self, x):
-        """x setter"""
+        """x setter
+        """
         self.__x = x
 
     @property
     def y(self):
-        """y getter"""
+        """y getter
+        """
         return self.__y
 
     @y.setter
     def y(self, y):
-        """y setter"""
+        """y setter
+        """
         self.__y = y
