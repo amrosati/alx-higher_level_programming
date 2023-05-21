@@ -36,7 +36,7 @@ class Rectangle(Base):
     def width(self, width):
         """width setter
         """
-        self.__validate('width', width)
+        self.validate_value('width', width)
         self.__width = width
 
     @property
@@ -49,7 +49,7 @@ class Rectangle(Base):
     def height(self, height):
         """height setter
         """
-        self.__validate('height', height)
+        self.validate_value('height', height)
         self.__height = height
 
     @property
@@ -62,7 +62,7 @@ class Rectangle(Base):
     def x(self, x):
         """x setter
         """
-        self.__validate('x', x)
+        self.validate_value('x', x)
         self.__x = x
 
     @property
@@ -75,25 +75,25 @@ class Rectangle(Base):
     def y(self, y):
         """y setter
         """
-        self.__validate('y', y)
+        self.validate_value('y', y)
         self.__y = y
 
-    def __validate(var, val):
+    def validate_value(self, name, value):
         """Integers validation
 
         Args:
-            var (str): Name of the variable
-            val (:obj:Any): The variable's value
+            name (str): Name of the variable
+            value (:obj:Any): The variable's value
 
         Raises:
-            TypeError: if val is not int
-            ValueError: if val is less than 1, except x and y
+            TypeError: if value is not int
+            ValueError: if value is less than 1, except x and y
         """
-        if type(val) is not int:
-            raise TypeError(f'{var} must be an integer')
+        if type(value) is not int:
+            raise TypeError(f'{name} must be an integer')
 
-        if val < 1:
-            if val < 0 and var in ['x', 'y']:
-                raise ValueError(f'{var} must be >= 0')
+        if value < 1:
+            if value < 0 and name in ['x', 'y']:
+                raise ValueError(f'{name} must be >= 0')
 
-            raise ValueError(f'{var} must be > 0')
+            raise ValueError(f'{name} must be > 0')
