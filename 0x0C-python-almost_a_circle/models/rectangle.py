@@ -106,3 +106,10 @@ class Rectangle(Base):
             int: width * height
         """
         return self.width * self.height
+
+    def display(self):
+        """Prints the rectangle to stdout with the character `#`"""
+        for i in range(self.height):
+            for j in range(self.width):
+                print('#', end="")
+            print()
