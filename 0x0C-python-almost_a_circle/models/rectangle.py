@@ -93,7 +93,8 @@ class Rectangle(Base):
             raise TypeError(f'{name} must be an integer')
 
         if value < 1:
-            if value < 0 and name in ['x', 'y']:
-                raise ValueError(f'{name} must be >= 0')
-
-            raise ValueError(f'{name} must be > 0')
+            if name in ['x', 'y']:
+                if value < 0:
+                    raise ValueError(f'{name} must be >= 0')
+            else:
+                raise ValueError(f'{name} must be > 0')
