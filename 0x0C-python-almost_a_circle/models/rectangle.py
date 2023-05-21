@@ -36,6 +36,7 @@ class Rectangle(Base):
     def width(self, width):
         """width setter
         """
+        self.__validate('width', width)
         self.__width = width
 
     @property
@@ -48,6 +49,7 @@ class Rectangle(Base):
     def height(self, height):
         """height setter
         """
+        self.__validate('height', height)
         self.__height = height
 
     @property
@@ -60,6 +62,7 @@ class Rectangle(Base):
     def x(self, x):
         """x setter
         """
+        self.__validate('x', x)
         self.__x = x
 
     @property
@@ -72,4 +75,25 @@ class Rectangle(Base):
     def y(self, y):
         """y setter
         """
+        self.__validate('y', y)
         self.__y = y
+
+    def __validate(var, val):
+        """Integers validation
+
+        Args:
+            var (str): Name of the variable
+            val (:obj:Any): The variable's value
+
+        Raises:
+            TypeError: if val is not int
+            ValueError: if val is less than 1, except x and y
+        """
+        if type(val) is not int:
+            raise TypeError(f'{var} must be an integer')
+
+        if val < 1:
+            if val < 0 and var in ['x', 'y']:
+                raise ValueError(f'{var} must be >= 0')
+
+            raise ValueError(f'{var} must be > 0')

@@ -2,12 +2,12 @@
 
 """Base class unittest
 """
-from models.base import Base
 import unittest
+from models.base import Base
 
 
 class TestBase(unittest.TestCase):
-    """Testing assign id functionality"""
+    """Testing Base class"""
 
     def setUp(self):
         print("Base Set Up")
@@ -25,7 +25,7 @@ class TestBase(unittest.TestCase):
         self.base2 = Base(3)
         self.assertEqual(self.base2.id, 3)
         self.base3 = Base()
-        self.assertEqual(self.base2.id, 2)
+        self.assertEqual(self.base3.id, 2)
 
 
 if __name__ == "__main__":
