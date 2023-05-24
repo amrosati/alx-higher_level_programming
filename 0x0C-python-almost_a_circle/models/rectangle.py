@@ -133,3 +133,16 @@ class Rectangle(Base):
         """
         form = "[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}"
         return form.format(self.id, self.x, self.y, self.width, self.height)
+
+    def update(self, *args):
+        """Assignes an argument to each attribute
+
+        Args:
+            args (:obj:tuble): optional arguments list
+        """
+        if args == ():
+            return
+
+        attr = (self.id, self.width, self.height, self.x, self.y)
+        self.id, self.width, self.height, self.x, self.y = \
+            args + attr[len(args):len(attr)]
