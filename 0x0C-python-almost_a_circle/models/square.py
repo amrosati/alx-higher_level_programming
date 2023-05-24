@@ -20,3 +20,14 @@ class Square(Rectangle):
         """
         form = "[Square] ({:d}) {:d}/{:d} - {:d}"
         return form.format(self.id, self.x, self.y, self.width)
+
+    @property
+    def size(self):
+        """size getter"""
+        return self.height
+
+    @size.setter
+    def size(self, size):
+        """size setter"""
+        self.width = size
+        self.height = size
