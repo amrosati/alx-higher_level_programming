@@ -2,6 +2,7 @@
 
 """Defines a Base class
 """
+from os.path import exists
 import json
 
 
@@ -98,6 +99,9 @@ class Base:
         """
         filename = cls.__name__ + ".json"
         instances = []
+
+        if not exists(filename):
+            return instances
 
         with open(filename, 'r', encoding="utf-8") as f:
             json_string = f.read().replace('\n', '')
