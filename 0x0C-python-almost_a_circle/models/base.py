@@ -81,8 +81,10 @@ class Base:
         if not dictionary:
             return None
 
-        if cls.__name__ in ('Rectangle', 'Square'):
+        if cls.__name__ == 'Rectangle':
             new = cls(1, 1)
+        elif cls.__name__ == 'Square':
+            new = cls(1)
 
         new.update(**dictionary)
         return new
