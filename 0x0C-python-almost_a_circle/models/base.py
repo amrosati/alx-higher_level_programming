@@ -67,3 +67,22 @@ class Base:
             return json.loads(json_string)
 
         return []
+
+    @classmethod
+    def create(cls, **dictionary):
+        """Creates an instance of one of the subclasses
+
+        Args:
+            dictionary (:obj:dict): attributes values to assign
+
+        Returns:
+            obj: Instance
+        """
+        if not dictionary:
+            return None
+
+        if cls.__name__ in ('Rectangle', 'Square'):
+            new = cls(1, 1)
+
+        new.update(**dictionary)
+        return new
