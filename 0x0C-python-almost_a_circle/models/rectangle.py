@@ -139,10 +139,12 @@ class Rectangle(Base):
 
         Args:
             args (:obj:tuble): optional arguments list
+            kwargs (:obj:dict): attributes dictionary
         """
-        if args == ():
-            return
-
-        attr = (self.id, self.width, self.height, self.x, self.y)
-        self.id, self.width, self.height, self.x, self.y = \
-            args + attr[len(args):len(attr)]
+        if args != ():
+            attr = (self.id, self.width, self.height, self.x, self.y)
+            self.id, self.width, self.height, self.x, self.y = \
+                args + attr[len(args):len(attr)]
+        elif kwrags:
+            for (name, value) in kwargs:
+                setattr(self, name, value)
