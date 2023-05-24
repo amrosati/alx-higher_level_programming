@@ -146,5 +146,5 @@ class Rectangle(Base):
             self.id, self.width, self.height, self.x, self.y = \
                 args + attr[len(args):len(attr)]
         elif kwrags:
-            for (name, value) in kwargs:
+            for (name, value) in kwargs.items():
                 setattr(self, name, value)
