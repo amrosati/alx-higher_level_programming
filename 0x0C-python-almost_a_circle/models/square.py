@@ -31,3 +31,18 @@ class Square(Rectangle):
         """size setter"""
         self.width = size
         self.height = size
+
+    def update(self, *args, **kwargs):
+        """Updates the instance attributes
+
+        Args:
+            args (:obj:tuble): optional values tuble
+            kwargs (:obj:dict): optional key/value attributes
+        """
+        if args:
+            attr = (self.id, self.size, self.x, self.y)
+            self.id, self.size, self.x, self.y = \
+                args + attr[len(args):len(attr)]
+        elif kwargs:
+            for (name, value) in kwargs.items():
+                setattr(self, name, value)
