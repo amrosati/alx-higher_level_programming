@@ -52,3 +52,18 @@ class Base:
 
         with open(filename, 'w', encoding="utf-8") as f:
             return f.write(Base.to_json_string(text))
+
+    @staticmethod
+    def from_json_string(json_string):
+        """Decodes a JSON string to a Python object
+
+        Args:
+            json_string (str): JSON string representation
+
+        Returns:
+            list: list represented by ``json_string``
+        """
+        if json_string:
+            return json.loads(json_string)
+
+        return []
